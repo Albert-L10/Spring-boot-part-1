@@ -1,40 +1,32 @@
 package com.UserApp.UserApp1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public abstract class UserServiceImp implements UserService,FakeRepoInterface {
+@Service
+public class UserServiceImp implements UserService{
+   @Autowired
+   FakeRepo fakeRepo ;
 
-    @Autowired
-    private FakeRepo fakeRepo;
-    @Override
-    public String addUser(int Id, String name, String surname) {
-        fakeRepo = new FakeRepo ();
-        return fakeRepo.insertUser(Id, name, surname);
-    }
-    @Override
-    public String removeUser(int Id) {
-        fakeRepo = new FakeRepo ();
-        return fakeRepo.deleteUser(Id);
-    }
-    @Override
-    public String getUser(int Id) {
-        fakeRepo = new FakeRepo ();
-        return fakeRepo.findUserById(Id);
+    public UserServiceImp(FakeRepo fakeRepo) {
+        this.fakeRepo=fakeRepo;
     }
 
     @Override
-    public String insertUser(int id, String name, String surname) {
-        return null;
+    public String addUser(long Id, String name, String surname) {
+        return fakeRepo.insertUser(Id,name,surname);
     }
 
     @Override
-    public String deleteUser(int Id) {
-        return null;
+    public String getUser(long Id) {
+
+    return  fakeRepo.findUserById(Id);
+
     }
 
     @Override
-    public String findUserById(int Id) {
-        return null;
-    }
+    public String deleteUser(long Id) {
+     return fakeRepo.deleteUser(Id);
 
+    }
 }

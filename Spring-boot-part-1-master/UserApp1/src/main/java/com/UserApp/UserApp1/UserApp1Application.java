@@ -9,13 +9,16 @@ public class UserApp1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(UserApp1Application.class, args);
 
-		System.out.println("testing the process");
 
 		FakeRepo fakeRepo=new FakeRepo();
-		System.out.println(fakeRepo.insertUser(1,"Ronald","Majozi"));
+		UserServiceImp userServiceImp = new UserServiceImp(fakeRepo);
 
-		System.out.println(fakeRepo.findUserById(1));
-		System.out.println(fakeRepo.deleteUser(1));
+		System.out.println(userServiceImp.addUser(2,"Thomas","Mlambo"));
+		System.out.println(userServiceImp.getUser(2));
+		System.out.println(userServiceImp.deleteUser(2));
+
+
+
 
 	}
 

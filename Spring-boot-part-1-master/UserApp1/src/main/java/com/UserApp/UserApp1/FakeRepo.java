@@ -13,29 +13,29 @@ public class FakeRepo implements FakeRepoInterface {
     static ArrayList<User> users = new ArrayList<>();
 
     @Override
-    public String insertUser(int id, String name, String surname){
+    public String insertUser(long id, String name, String surname){
         users.add(new User(id, name, surname));
-        return name + " " + surname + " Was Successfully Entered";
+        return name + " " + surname+" was successfully added";
     }
 
     @Override
-    public String findUserById(int Id) {
+    public String findUserById(long id) {
         for(User user:users){
             long userId = user.getId();
-            if(userId == Id){
-                return "Hello "+user.getName();
+            if(userId == id){
+                return user.getName()+" "+user.getSurname()+" was successfully found";
             }
         }
         return null;
     }
 
     @Override
-    public String deleteUser(int Id) {
+    public String deleteUser(long id) {
         for (User user:users){
             long userId = user.getId();
-            if(userId == Id){
+            if(userId == id){
                 users.remove(user);
-                return user.getName()+" " + user.getSurname () +" Was Successfully Removed";
+                return user.getName()+" " + user.getSurname ()+" was successfully removed";
             }
         }
         return null;
