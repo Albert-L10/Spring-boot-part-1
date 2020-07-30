@@ -12,6 +12,10 @@ public class UserServiceImp implements UserService{
         this.fakeRepo=fakeRepo;
     }
 
+    public UserServiceImp() {
+
+    }
+
     @Override
     public String addUser(long Id, String name, String surname) {
         return fakeRepo.insertUser(Id,name,surname);
